@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group = 'br.com.ph3nr1qu3.infrastructure'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation(project(":core"))
+    implementation(project(":application"))
+}
+
+test {
+    useJUnitPlatform()
+}
