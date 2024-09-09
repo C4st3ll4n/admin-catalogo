@@ -4,20 +4,18 @@ import br.com.ph3nr1qu3.core.AggregateRoot;
 import br.com.ph3nr1qu3.core.validation.ValidationHandler;
 
 import java.time.Instant;
+import java.util.Objects;
 
 public class Category extends AggregateRoot<CategoryID> {
 
-    private final String name;
+    private String name;
 
-    private final String description;
-
-    private final Boolean active;
-
+    private String description;
     private final Instant createdAt;
+    private Boolean active;
+    private Instant deletedAt;
 
-    private final Instant deletedAt;
-
-    private final Instant updatedAt;
+    private Instant updatedAt;
 
     private Category(final CategoryID id,
                      final String name,
@@ -44,13 +42,13 @@ public class Category extends AggregateRoot<CategoryID> {
         return new Category(
                 CategoryID.unique(),
                 aName, aDescription, isActive,
-                now, null, now
+                now, isActive ? null : now, now
         );
 
     }
 
     public CategoryID getId() {
-        return (CategoryID) id;
+        return id;
     }
 
     public String getName() {
@@ -80,5 +78,36 @@ public class Category extends AggregateRoot<CategoryID> {
     @Override
     public void validate(final ValidationHandler handler) {
         new CategoryValidator(this, handler).validate();
+    }
+
+    public Category deactivate() {
+        if (Objects.isNull(deletedAt)) {
+            this.deletedAt = Instant.now();
+        }
+
+        this.active = false;
+        this.updatedAt = Instant.now();
+        return this;
+    }
+
+    public Category activate() {
+        this.deletedAt = null;
+        this.active = true;
+        this.updatedAt = Instant.now();
+        return this;
+    }
+
+    public Category update(final String newName, final String newDescription, final boolean newIsActive) {
+        this.name = newName;
+        this.description = newDescription;
+        this.active = newIsActive;
+
+        if(newIsActive){
+            activate();
+        }else{
+            deactivate();
+        }
+
+        return this;
     }
 }

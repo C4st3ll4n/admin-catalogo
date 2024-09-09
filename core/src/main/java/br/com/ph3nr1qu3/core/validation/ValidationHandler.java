@@ -14,7 +14,7 @@ public interface ValidationHandler {
     }
 
 
-    public interface Validation {
+    interface Validation {
         void validate();
     }
 
