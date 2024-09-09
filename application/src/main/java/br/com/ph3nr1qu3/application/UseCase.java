@@ -1,7 +1,7 @@
 package br.com.ph3nr1qu3.application;
 
 
-import br.com.ph3nr1qu3.core.Category;
+import br.com.ph3nr1qu3.core.category.Category;
 
 public class UseCase {
 
