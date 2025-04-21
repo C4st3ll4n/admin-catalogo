@@ -12,6 +12,8 @@ public interface CategoryGateway {
 
     Optional<Category> findById(String categoryId);
 
+    Optional<Category> findById(CategoryID categoryId);
+
     Category update(Category category);
 
     Pagination<Category> findAll(CategorySearchQuery query);
