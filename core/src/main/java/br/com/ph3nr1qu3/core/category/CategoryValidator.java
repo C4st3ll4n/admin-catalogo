@@ -18,6 +18,7 @@ public class CategoryValidator extends Validator {
     @Override
     public void validate() {
         checkNameConstraints();
+        checkDescriptionConstraints();
     }
 
     private void checkNameConstraints() {
@@ -37,6 +38,25 @@ public class CategoryValidator extends Validator {
             this.validationHandler().append(new Error("'name' should be smaller then 255 letters"));
         }if (size < 3) {
             this.validationHandler().append(new Error("'name' should be grater then 3 letters"));
+        }
+    }
+    private void checkDescriptionConstraints() {
+        final String description = category.getDescription();
+        if (Objects.isNull(description)) {
+            this.validationHandler().append(new Error("'description' cannot be null"));
+            return;
+        }
+
+        if (description.isBlank()) {
+            this.validationHandler().append(new Error("'description' cannot be empty"));
+            return;
+        }
+
+        final int size = description.trim().length();
+        if (size > 255) {
+            this.validationHandler().append(new Error("'description' should be smaller then 255 letters"));
+        }if (size < 3) {
+            this.validationHandler().append(new Error("'description' should be grater then 3 letters"));
         }
     }
 }
