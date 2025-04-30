@@ -1,7 +1,5 @@
 package br.com.ph3nr1qu3.infrastructure;
 
-
-import br.com.ph3nr1qu3.application.UseCase;
 import br.com.ph3nr1qu3.infrastructure.configuration.WebServerConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
