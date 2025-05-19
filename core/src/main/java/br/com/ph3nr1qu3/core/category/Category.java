@@ -28,7 +28,7 @@ public class Category extends AggregateRoot<CategoryID> {
         this.name = name;
         this.description = description;
         this.active = active;
-        this.createdAt = createdAt;
+        this.createdAt = Objects.requireNonNull(createdAt, "createdAt should not be null");
         this.deletedAt = deletedAt;
         this.updatedAt = updatedAt;
     }
@@ -45,6 +45,12 @@ public class Category extends AggregateRoot<CategoryID> {
                 now, isActive ? null : now, now
         );
 
+    }
+
+    public static Category with(CategoryID id, String name, String description, boolean active, Instant createdAt, Instant updatedAt, Instant deletedAt) {
+        return new Category(
+                id, name, description, active, createdAt, deletedAt, updatedAt
+        );
     }
 
     public CategoryID getId() {
@@ -102,9 +108,9 @@ public class Category extends AggregateRoot<CategoryID> {
         this.description = newDescription;
         this.active = newIsActive;
 
-        if(newIsActive){
+        if (newIsActive) {
             activate();
-        }else{
+        } else {
             deactivate();
         }
 
