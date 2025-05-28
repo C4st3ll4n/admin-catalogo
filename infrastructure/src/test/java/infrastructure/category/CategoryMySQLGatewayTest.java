@@ -1,4 +1,4 @@
-package category;
+package infrastructure.category;
 
 import br.com.ph3nr1qu3.core.category.Category;
 import br.com.ph3nr1qu3.infrastructure.category.persistence.CategoryJpaEntity;

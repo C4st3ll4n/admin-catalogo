@@ -1,9 +1,9 @@
-package category.persistence;
+package infrastructure.category.persistence;
 
 import br.com.ph3nr1qu3.core.category.Category;
 import br.com.ph3nr1qu3.infrastructure.category.persistence.CategoryJpaEntity;
 import br.com.ph3nr1qu3.infrastructure.category.persistence.CategoryRepository;
-import category.MySQLGatewayTest;
+import MySQLGatewayTest;
 import org.hibernate.PropertyValueException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
